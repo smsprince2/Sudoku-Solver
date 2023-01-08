@@ -32,18 +32,15 @@ bool isvalid(vector<vector<int>> &a, int i, int j, int n, int num){
 
 bool sudokuSolver(vector<vector<int>> &a, int i, int j, int n){
     if(i==n){
-        cout<<"I am termination of program"<<endl;
         prints(a, n);
         return true;
     }
     // wrapping around and moving to the next row
     if(j==n){
-        cout<<"***** I am row end! ***** "<<j<<endl;
         return sudokuSolver(a, i+1, 0, n);
     }
     // checking if there is any element already present in question
     if(a[i][j]!=0){
-        cout<<" I am not equal to zero "<<a[i][j]<<endl;
         return sudokuSolver(a, i, j+1, n);
         
     }
@@ -51,14 +48,12 @@ bool sudokuSolver(vector<vector<int>> &a, int i, int j, int n){
     for(int num=1; num<=n; num++){
         if(isvalid(a, i, j, n, num)){
             a[i][j]=num;
-            cout<<"Value Set "<<num<<endl;
             bool subAns= sudokuSolver(a, i, j+1, n);
             if(subAns){
                 return true;
             }
         }
             //Backtracking
-            cout<<"I have Back tracked "<<a[i][j]<<endl;
             a[i][j]=0;
         
     }
